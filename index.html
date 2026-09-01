@@ -2,195 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>NAYA</title>
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins&display=swap" rel="stylesheet">
-
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%;
+        }
         body {
             background-color: #ffb3c6;
             font-family: Bungee;
-            padding: 0;
-            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        #showPopup {
-            padding: 20px;
-            width: 130px;
-            border-radius: 25px;
-            font-family: Bungee;
-            color: #ff0a54;
-            font-size: 20px;
-            border: none;
-            cursor: pointer;
-        }
-
-        #showPopup:hover {
-            padding: 22px;
-            transition: 0.5s;
-            width: 150px;
-            color: #d264b6;
-        }
-
+        /* ✅ BUTTON — NASA TOTOONG GITNA NG SCREEN */
         #pis {
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-            top: 10rem;
-        }
-
-        #name {
-            color: whitesmoke;
-            font-size: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Popup Box */
-        #overlay {
-            display: none;
+            width: 100%;
+            height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.4);
-            z-index: 99;
-        }
-
-        #popupBox {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fe5d9f;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-            width: 700px;
-            max-width: 90%;
-            z-index: 100;
-            color: whitesmoke;
-            text-align: justify;
-            font-family: Poppins, sans-serif;
-            font-size: 20px;
-            line-height: 1.6;
-        }
-
-        #popupBox:hover {
-            padding: 30px;
-            transition: 1s;
-        }
-
-        #sarado {
-            border-radius: 10px; 
-            background-color: whitesmoke;
-            border: none;
-            padding: 7px 15px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        /* 📍 KALIWA — 3 Litrato */
-        #leftSide {
-            position: fixed;
-            top: 20px;
-            left: 30px;
-            width: 250px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        /* 📍 KANAN — 3 Litrato */
-        #rightSide {
-            position: fixed;
-            top: 20px;
-            right: 30px;
-            width: 250px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        /* Litrato — nakatago muna */
-        #leftSide img, #rightSide img {
-            width: 100%;
-            border-radius: 8px;
-            opacity: 0;
-            transition: all 0.8s ease;
-        }
-
-        /* Kaliwa: papasok mula kaliwa */
-        #leftSide img {
-            transform: translateX(-40px);
-        }
-        #leftSide img.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Kanan: papasok mula kanan */
-        #rightSide img {
-            transform: translateX(40px);
-        }
-        #rightSide img.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-       
-    <style>
-        body {
-            background-color: #ffb3c6;
-            font-family: Bungee;
-            padding: 0;
-            margin: 0;
-        }
-
-        #showPopup {
-            padding: 20px;
-            width: 130px;
-            border-radius: 25px;
-            font-family: Bungee;
-            color: #ff0a54;
-            font-size: 20px;
-            border: none;
-            cursor: pointer;
             z-index: 10;
-            position: relative;
         }
-
+        #showPopup {
+            padding: 20px;
+            width: 130px;
+            max-width: 100%;
+            border-radius: 25px;
+            font-family: Bungee;
+            color: #ff0a54;
+            font-size: clamp(18px, 4vw, 20px);
+            border: none;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
         #showPopup:hover {
             padding: 22px;
-            transition: 0.5s;
             width: 150px;
             color: #d264b6;
         }
 
-        #pis {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            top: 10rem;
-        }
-
-        #name {
-            color: whitesmoke;
-            font-size: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Popup Box */
+        /* ✅ POPUP — NASA GITNA NG SCREEN */
         #overlay {
             display: none;
             position: fixed;
@@ -201,230 +64,48 @@
             background: rgba(0,0,0,0.4);
             z-index: 99;
         }
-
         #popupBox {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #fe5d9f;
-            padding: 25px;
+            clip-path: inset(0 0 100% 0);
+            background: transparent;
+            padding: clamp(18px, 4vw, 25px);
             border-radius: 12px;
             box-shadow: 0 0 15px rgba(0,0,0,0.3);
             width: 700px;
-            max-width: 90%;
+            max-width: 92%;
+            max-height: 85vh;
+            overflow-y: auto;
             z-index: 100;
             color: whitesmoke;
             text-align: justify;
             font-family: Poppins, sans-serif;
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             line-height: 1.6;
+            position: relative;
+            transition: all 0.8s ease-out;
         }
-
+        #popupBox.showPopupNow {
+            clip-path: inset(0 0 0 0);
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        #popupBox h3 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: clamp(20px, 5vw, 28px);
+        }
         #popupBox:hover {
-            padding: 30px;
+            padding: clamp(20px, 5vw, 30px);
             transition: 1s;
         }
-
-        #sarado {
-            border-radius: 10px; 
-            background-color: whitesmoke;
-            border: none;
-            padding: 7px 15px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        /* 📍 KALIWA — 3 Litrato */
-        #leftSide {
-            position: fixed;
-            top: 20px;
-            left: 30px;
-            width: 250px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        /* 📍 GITNA — MGA LITRATO ✨ BAGO ✨ */
-        #centerSide {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 280px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        /* 📍 KANAN — 3 Litrato */
-        #rightSide {
-            position: fixed;
-            top: 20px;
-            right: 30px;
-            width: 250px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        /* Litrato — nakatago muna */
-        #leftSide img, #centerSide img, #rightSide img {
-            width: 100%;
-            border-radius: 8px;
-            opacity: 0;
-            transition: all 0.8s ease;
-        }
-
-        /* Kaliwa: papasok mula kaliwa */
-        #leftSide img {
-            transform: translateX(-40px);
-        }
-        #leftSide img.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Gitna: papasok mula sa itaas ✨ */
-        #centerSide img {
-            transform: translateY(-40px);
-        }
-        #centerSide img.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         #messageText {
             white-space: pre-wrap;
+            word-break: break-word;
         }
-
-      
-
-    <style>
-        body {
-            background-color: #ffb3c6;
-            font-family: Bungee;
-            padding: 0;
-            margin: 0;
-        }
-
-        #showPopup {
-            padding: 20px;
-            width: 130px;
-            border-radius: 25px;
-            font-family: Bungee;
-            color: #ff0a54;
-            font-size: 20px;
-            border: none;
-            cursor: pointer;
-            z-index: 10;
-            position: relative;
-        }
-
-        #showPopup:hover {
-            padding: 22px;
-            transition: 0.5s;
-            width: 150px;
-            color: #d264b6;
-        }
-
-        #pis {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            top: 10rem;
-        }
-
-        /* Popup Box */
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.4);
-            z-index: 99;
-        }
-
-        #popupBox {
-   
-   #popupBox {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    /* ✨ SOBRE NA BUMUBUKAS — Nakatago muna sa itaas ✨ */
-    clip-path: inset(0 0 100% 0); /* ✨ Nakatago muna — 0% ang nakikita */
-    
-    background: transparent;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    width: 700px;
-    max-width: 90%;
-    z-index: 100;
-    color: whitesmoke;
-    text-align: justify;
-    font-family: Poppins, sans-serif;
-    font-size: 20px;
-    line-height: 1.6;
-    
-    position: relative;
-    overflow: hidden;
-    
-    /* ✨ MALAMBOT NA PAGBUKAS ✨ */
-    transition: all 0.8s ease-out;
-}
-
-/* ✅ Kapag BUMUKAS NA — dahan-dahang bababa mula sa itaas */
-#popupBox.showPopupNow {
-    clip-path: inset(0 0 0 0); /* ✨ 100% na ang nakikita — bukas na bukas! */
-}     }
-           
-/* ✅ Kapag LUMABAS NA — dahan-dahang lalaki at aakyat */
-#popupBox.showPopupNow {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1) translateY(0);
-}
-        
-    
-  
-    
-    
-
-/* ✨ LITRATO SA LIKOD — SIYA LANG ANG LALABO ✨ */
-#popupBox::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("kami.jpg") no-repeat center center;
-    background-size: cover;
-    
-    /* ✨ BLUR SA LITRATO LANG — HINDI SA SULAT */
-    filter: blur(8px) brightness(0.80);
-      
-    
-    z-index: -2; /* ✅ Ilalagay sa PINAKA-LIKOD ng lahat */
-}
-            
-            
-            
-        
-
-        #popupBox:hover {
-            padding: 30px;
-            transition: 1s;
-        }
-
         #sarado {
             border-radius: 10px; 
             background-color: whitesmoke;
@@ -432,67 +113,108 @@
             padding: 7px 15px;
             cursor: pointer;
             margin-top: 15px;
+            font-family: inherit;
+            width: 100%;
+            max-width: 120px;
         }
 
-        /* 📍 KALIWA — Litrato */
+        /* ✅ LITRATO SA LIKOD — BLUR */
+        #popupBox::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("kami.jpg") no-repeat center center;
+            background-size: cover;
+            filter: blur(8px) brightness(0.80);
+            z-index: -2;
+            border-radius: 12px;
+        }
+
+        /* ✅ LITRATO SA KALIWA, GITNA, KANAN — LAPTOP */
         #leftSide {
             position: fixed;
-            top: 20px;
-            left: 30px;
-            width: 250px;
+            top: 15px;
+            left: 1.5%;
+            width: 17%;
+            max-width: 210px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 8px;
         }
-
-        /* 📍 GITNA — Litrato */
         #centerSide {
             position: fixed;
-            top: 20px;
+            top: 15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 280px;
+            width: 19%;
+            max-width: 240px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 8px;
         }
-
-        /* 📍 KANAN — Litrato */
         #rightSide {
             position: fixed;
-            top: 20px;
-            right: 30px;
-            width: 250px;
+            top: 15px;
+            right: 1.5%;
+            width: 17%;
+            max-width: 210px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 8px;
         }
 
-        /* ✨ LUMULUTANG NA EPEKTO ✨ */
+        /* ✅ TABLET — LILIIT NG KONTI */
+        @media (max-width: 900px) {
+            #leftSide { left: 1%; width: 20%; }
+            #centerSide { width: 24%; }
+            #rightSide { right: 1%; width: 20%; }
+        }
+
+        /* ✅ CELLPHONE — LILIIT LAHAT PERO KASYA LAHAT! */
+        @media (max-width: 600px) {
+            #leftSide, #centerSide, #rightSide {
+                position: fixed;
+                top: 8px;
+                width: 30%; /* ✅ Mas maliit na lapad */
+                max-width: 110px; /* ✅ Pinakamaliit na sukat */
+            }
+            #leftSide { left: 1.5%; }
+            #centerSide { left: 50%; transform: translateX(-50%); }
+            #rightSide { right: 1.5%; }
+            
+            /* ✅ LITRATO — MAS MALIIT AT MAS MAHIRAPANG LAKI */
+            #leftSide img, #centerSide img, #rightSide img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        /* ✅ LUMULUTANG NA EPEKTO */
         @keyframes floatUp {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
+            50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
 
-        /* Litrato — nakatago muna */
+        /* ✅ MGA LITRATO — PANGKALAHATANG ESTILO */
         #leftSide img, #centerSide img, #rightSide img {
             width: 100%;
-            border-radius: 12px;
+            height: auto;
+            border-radius: 10px;
             opacity: 0;
             transition: all 0.8s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+            object-fit: cover;
         }
-
-        /* Kapag lumabas na — magsisimulang LUMULUTANG ✨ */
         #leftSide img.show, 
         #centerSide img.show, 
         #rightSide img.show {
             opacity: 1;
             animation: floatUp 2.5s ease-in-out infinite;
         }
-
-        /* IBA'T IBANG BILIS para hindi sabay-sabay ang galaw */
         #leftSide img:nth-child(2) { animation-delay: 0.3s; }
         #leftSide img:nth-child(3) { animation-delay: 0.6s; }
         #centerSide img:nth-child(2) { animation-delay: 0.4s; }
@@ -500,23 +222,26 @@
         #rightSide img:nth-child(2) { animation-delay: 0.5s; }
         #rightSide img:nth-child(3) { animation-delay: 0.8s; }
 
+        #leftSide img { transform: translateX(-40px); }
+        #leftSide img.show { transform: translateX(0); }
+        #centerSide img { transform: translateY(-40px); }
+        #centerSide img.show { transform: translateY(0); }
+        #rightSide img { transform: translateX(40px); }
+        #rightSide img.show { transform: translateX(0); }
     </style>
 </head>
 <body>
-
+    <!-- ✅ BUTTON — NASA GITNA -->
     <div id="pis">
         <button onclick="showPopup()" id="showPopup">CLICK ME!</button>
     </div>
 
-    <!-- 📍 3 LITRATO SA KALIWA -->
+    <!-- ✅ LITRATO SA GILID -->
     <div id="leftSide"></div>
-
     <div id="centerSide"></div>
-
-    <!-- 📍 3 LITRATO SA KANAN -->
     <div id="rightSide"></div>
 
-    <!-- Popup Box -->
+    <!-- ✅ POPUP -->
     <div id="overlay" onclick="hidePopup()"></div>
     <div id="popupBox">
         <h3>Ayapot</h3>
@@ -524,69 +249,43 @@
         <button onclick="hidePopup()" id="sarado">Close</button>
     </div>
 
-    <!-- Musika -->
     <audio id="bgMusic" src="kilig.mp3" preload="auto">
 
     <script>
-        // ======================================
-        // ✏️ PALITAN ANG PANGALAN NG LITRATO DITO
-        // ======================================
         const leftPhotos = [
-            "remove1.png",   // ← PALITAN: pangalan ng litrato mo
-            "remove2.png",   // ← halimbawa: "pic1.jpg"
-            "remove3.png"    // ← dapat TUMUGMA sa pangalan ng file
+            "remove1.png",
+            "remove2.png",
+            "remove3.png"
         ];
-
         const centerPhotos = [
-            "remove.png",   // ← PALITAN — litrato sa gitna
+            "remove.png",
             "remove2.png",
             "remove1.png"
-    ]
-
+        ];
         const rightPhotos = [
-            "remove.png",   // ← PALITAN
+            "remove.png",
             "remove2.png",
-            "remove1.png",
-            
-        
+            "remove1.png"
         ];
 
-        // ⚙️ Bilis
         const delay = 1000;
         const speed = 50;
 
-        // 💬 Mensahe
         const fullMessage = "Hi aya. i know maraming akong nagawang mali sayo, and I’m really glad na nag-uusap na tayo ulit now. Honestly, this time talking to you again made me realize even more kung gaano kita talaga kamahal, and how much I hate the reason why we broke up  because I cheated. Walang excuses, mali talaga ako. I broke your trust, I hurt you so much, and I take full responsibility for everthing. Pero habang nag uusap tayo, I really want to be honest with you gusto sana kitang ligawan ulit. Im serious abt this ahahaha. I've tought about everything deeply, and i swear to you hindi ko na uulitin ang mga mali ko. Natuto na ako, and I know exactly what I messed up. I value you so much now. more than ever, and i'll never do anything to lose u again. Im not rushing you or anything. Alam kong mahirap ibalik yung tiwalang sinira ko, and i respect that. But if you'll let me, i want to prove to you na nagbago na ako. Walang itatago, walang lihim. I'll make feel safe, secure and loved the way you truly deserve. No more doubts, no more mistakes.";
 
-        // ✅ Pindutin ang Button → LAHAT GAGANA
         function showPopup() {
-            // 📸 Litrato sa KALIWA
             leftPhotos.forEach((src, index) => {
                 const img = document.createElement("img");
                 img.src = src;
                 document.getElementById("leftSide").appendChild(img);
                 setTimeout(() => img.classList.add("show"), index * delay);
-
-
-                
-setTimeout(() => {
-    document.getElementById("popupBox").classList.add("showPopupNow");
-}, 10);
-
-document.getElementById("popupBox").style.display = "block";
-setTimeout(() => {
-    document.getElementById("popupBox").classList.add("showPopupNow");
-}, 30);
             });
-
-             centerPhotos.forEach((src, index) => {
+            centerPhotos.forEach((src, index) => {
                 const img = document.createElement("img");
                 img.src = src;
                 document.getElementById("centerSide").appendChild(img);
                 setTimeout(() => img.classList.add("show"), index * delay);
             });
-
-            // 📸 Litrato sa KANAN
             rightPhotos.forEach((src, index) => {
                 const img = document.createElement("img");
                 img.src = src;
@@ -594,33 +293,31 @@ setTimeout(() => {
                 setTimeout(() => img.classList.add("show"), index * delay);
             });
 
-            // 💬 Popup + Musika + Mensahe
+            setTimeout(() => {
+                document.getElementById("popupBox").classList.add("showPopupNow");
+            }, 30);
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popupBox").style.display = "block";
 
-           const music = document.getElementById("bgMusic");
-music.currentTime = 0;
-music.volume = 0; // ✅ SIMULA SA MAHINA
-music.play();
-
-// ✨ DAHAN-DAHANG LALAKAS ANG TUNOG ✨
-let vol = 0;
-const maxVol = 0.7; // ✅ PINAKAMATAAS NA LAKAS
-const volStep = 0.02;
-
-function fadeInMusic() {
-    if (vol < maxVol) {
-        vol += volStep;
-        music.volume = vol;
-        setTimeout(fadeInMusic, 80);
-    }
-}
-fadeInMusic();
+            const music = document.getElementById("bgMusic");
+            music.currentTime = 0;
+            music.volume = 0;
+            music.play();
+            let vol = 0;
+            const maxVol = 0.7;
+            const volStep = 0.02;
+            function fadeInMusic() {
+                if (vol < maxVol) {
+                    vol += volStep;
+                    music.volume = vol;
+                    setTimeout(fadeInMusic, 80);
+                }
+            }
+            fadeInMusic();
 
             const textElement = document.getElementById("messageText");
             textElement.textContent = "";
             let charIndex = 0;
-
             function typeLetter() {
                 if (charIndex < fullMessage.length) {
                     textElement.textContent += fullMessage.charAt(charIndex);
@@ -631,39 +328,31 @@ fadeInMusic();
             typeLetter();
         }
 
-        // ❌ Isara
         function hidePopup() {
             document.getElementById("overlay").style.display = "none";
             document.getElementById("popupBox").style.display = "none";
             document.getElementById("messageText").textContent = "";
-
-            // Burahin ang mga litrato kapag isinara
             document.getElementById("leftSide").innerHTML = "";
+            document.getElementById("centerSide").innerHTML = "";
             document.getElementById("rightSide").innerHTML = "";
+            document.getElementById("popupBox").classList.remove("showPopupNow");
 
             const music = document.getElementById("bgMusic");
-let fadeOutVol = music.volume;
-const fadeOutStep = 0.05;
-
-function fadeOutMusic() {
-    if (fadeOutVol > 0) {
-        fadeOutVol -= fadeOutStep;
-        music.volume = fadeOutVol;
-        setTimeout(fadeOutMusic, 80);
-    } else {
-        music.pause();
-        music.currentTime = 0;
-        music.volume = 0.7; // ✅ IBALIK SA NORMAL PARA SA SUSUNOD
-    }
-}
-fadeOutMusic();
-            document.getElementById("popupBox").classList.remove("showPopupNow");
-document.getElementById("popupBox").style.display = "none";
-       
-
-document.getElementById("popupBox").classList.remove("showPopupNow");
-document.getElementById("popupBox").style.display = "none";}
+            let fadeOutVol = music.volume;
+            const fadeOutStep = 0.05;
+            function fadeOutMusic() {
+                if (fadeOutVol > 0) {
+                    fadeOutVol -= fadeOutStep;
+                    music.volume = fadeOutVol;
+                    setTimeout(fadeOutMusic, 80);
+                } else {
+                    music.pause();
+                    music.currentTime = 0;
+                    music.volume = 0.7;
+                }
+            }
+            fadeOutMusic();
+        }
     </script>
-
 </body>
 </html>
